@@ -1,0 +1,11 @@
+.DS_Store
+*.tmp
+*.log
+*.pbix
+*.zip
+__pycache__/
+node_modules/
+*.pyc
+Thumbs.db
+Health-Trends-Analytics-BACKUP/
+*.pbixT

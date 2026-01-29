@@ -1,0 +1,175 @@
+# ================================
+# Python / Backend
+# ================================
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+*.pyd
+*.so
+.Python
+
+# Virtual environments
+env/
+venv/
+ENV/
+.venv/
+
+# Python build artifacts
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+*.tsbuildinfo
+
+# Testing
+.pytest_cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+.nyc_output
+
+# ================================
+# Node.js / Frontend
+# ================================
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+jspm_packages/
+
+# Frontend build output
+frontend/dist/
+frontend/build/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ================================
+# Environment Variables
+# ================================
+
+.env
+.env.*
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+!.env.example
+
+# ================================
+# Project-specific Data
+# ================================
+
+# Backend data directories
+backend/data/uploads/*
+!backend/data/uploads/.gitkeep
+backend/data/temp/*
+!backend/data/temp/.gitkeep
+
+# ML outputs (generated at runtime)
+backend/ml/outputs/*.png
+backend/ml/outputs/*.jpg
+backend/ml/outputs/*.pdf
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Test files (optional - uncomment if needed)
+# testfiles/
+
+# ================================
+# IDE / Editor
+# ================================
+
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*.swn
+*~
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# ================================
+# OS Files
+# ================================
+
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# ================================
+# Archives
+# ================================
+
+*.tar
+*.tar.gz
+*.zip
+*.7z
+*.gz
+*.bz2
+*.rar
+
+# ================================
+# Temporary Files
+# ================================
+
+*.tmp
+*.temp
+.temp
+.tmp
+.cache
+.parcel-cache
+*.orig
+
+# ================================
+# Docker
+# ================================
+
+# Ignore docker volumes data (if any)
+# docker-volumes/
+
+# ================================
+# Misc
+# ================================
+
+# Coverage reports
+coverage/
+
+# Backups
+*.bak
+*.backup
+*~

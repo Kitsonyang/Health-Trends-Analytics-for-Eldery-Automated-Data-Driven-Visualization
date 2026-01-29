@@ -1,0 +1,70 @@
+services:
+  frontend:
+    image: docker.io/oyy994/dashboard:frontend
+    container_name: elderly-dashboard
+    build:
+      context: ./frontend
+      args:
+        - VITE_PBI_EMBED_URL=${VITE_PBI_EMBED_URL}
+        - VITE_API_BASE=${VITE_API_BASE}
+        - VITE_MAX_UPLOAD_MB=${VITE_MAX_UPLOAD_MB:-100}
+    ports:
+      - "8088:80"
+    restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  backend:
+    image: docker.io/oyy994/dashboard:backend
+    build:
+      context: ./backend
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      # Power BI service principal settings (fill with your values)
+      - PBI_TENANT_ID=${PBI_TENANT_ID}
+      - PBI_CLIENT_ID=${PBI_CLIENT_ID}
+      - PBI_CLIENT_SECRET=${PBI_CLIENT_SECRET}
+      - PBI_WORKSPACE_ID=${PBI_WORKSPACE_ID}
+      - PBI_DATASET_ID=${PBI_DATASET_ID}
+      - PBI_EMBED_URL=${PBI_EMBED_URL}
+    volumes:
+      # Persist ML output images across container restarts
+      - ml-outputs:/app/ml/outputs
+      # Persist uploaded data files
+      - backend-data:/app/data
+    restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:8000/healthz || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+
+  # watchtower:
+  #   image: containrrr/watchtower
+  #   container_name: watchtower
+  #   restart: unless-stopped
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #     - /root/.docker/config.json:/config.json
+  #   command: --label-enable --cleanup --interval 60
+
+# Named volumes for data persistence
+volumes:
+  ml-outputs:
+    driver: local
+  backend-data:
+    driver: local
+
+# networks:
+#   web:
+#     external: true
+
